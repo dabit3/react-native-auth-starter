@@ -1,6 +1,6 @@
 # React Native Auth Starter
 
-#### Boilerplate for authentication in your React Native apps.
+#### Easy authentication for your next React Native app.
 
 ![](https://i.imgur.com/4PMkScx.jpg)
 
