@@ -14,14 +14,15 @@ import {
 import { authenticate } from '../actions'
 import { fonts, colors } from '../theme'
 
-import { Auth } from 'aws-amplify-react-native';
+import { Auth } from 'aws-amplify-react-native'
 import { connect } from 'react-redux'
+
+import Input from '../components/Input'
 
 class SignIn extends Component<{}> {
   state = {
     username: '',
-    password: '',
-    email: ''
+    password: ''
   }
 
   componentDidMount() {
@@ -69,39 +70,28 @@ class SignIn extends Component<{}> {
           sign in to continue
         </Text>
         <View style={styles.inputContainer}>
-          <TextInput
-            autoCapitalize='none'
-            autoCorrect={false}
-            style={styles.input}
+          <Input
             placeholder="User Name"
-            placeholderTextColor="#a0a0a0"
-            onChangeText={value => this.onChangeText('username', value)}
-            underlineColorAndroid='transparent'
+            onChangeText={this.onChangeText}
+            value={this.state.username}
           />
-          <TextInput
-            autoCorrect={false}
-            autoCapitalize='none'
-            style={styles.input}
+          <Input
             placeholder="Password"
-            placeholderTextColor="#a0a0a0"
-            onChangeText={value => this.onChangeText('password', value)}
-            underlineColorAndroid='transparent'
-            secureTextEntry
+            onChangeText={this.onChangeText}
+            value={this.state.password}
           />
         </View>
 
-        <View>
-          <TouchableOpacity onPress={this.signIn.bind(this)}>
-            <View style={styles.button}>
-              <Text style={styles.buttonText}>Login</Text>
-              {
-                isAuthenticating && (
-                  <View style={styles.activityIndicator}><ActivityIndicator color={colors.primary} /></View>
-                )
-              }
-            </View>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity onPress={this.signIn.bind(this)}>
+          <View style={styles.button}>
+            <Text style={styles.buttonText}>Login</Text>
+            {
+              isAuthenticating && (
+                <View style={styles.activityIndicator}><ActivityIndicator color={colors.primary} /></View>
+              )
+            }
+          </View>
+        </TouchableOpacity>
         <Text style={[styles.errorMessage, signInError && { color: 'black' }]}>Error logging in. Please try again.</Text>
       </View>
     );
@@ -165,13 +155,5 @@ const styles = StyleSheet.create({
     color: '#666',
     fontSize: 24,
     marginTop: 5
-  },
-  input: {
-    height: 45,
-    marginBottom: 15,
-    fontFamily: fonts.light,
-    borderBottomWidth: 1.5,
-    fontSize: 16,
-    borderBottomColor: colors.primary
   }
 });

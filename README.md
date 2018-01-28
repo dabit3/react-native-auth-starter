@@ -25,7 +25,9 @@ Easy authentication for your next React Native app.
 
 ⬜️ Social Logins / Federated Identities
 
-⬜️ Optional intro / onboarding flow   
+⬜️ Optional intro / onboarding flow    
+
+⬜️ Better error messages
 
 
 ## Getting Started   
