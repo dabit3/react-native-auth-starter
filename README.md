@@ -8,7 +8,7 @@ Easy authentication for your next React Native app.
 
 ## Features
 
-✅ React Navigation
-✅ Redux
-✅ Opinionated yet configurable
-✅ Themeable
+✅ React Navigation   
+✅ Redux   
+✅ Opinionated yet configurable   
+✅ Themeable   
