@@ -1,4 +1,4 @@
-#React Native Auth Starter
+# React Native Auth Starter
 
 ![](https://i.imgur.com/4PMkScx.jpg)
 
