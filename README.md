@@ -6,8 +6,6 @@ Easy authentication for your next React Native app.
 
 ### 🎧 Powered by [Amplify](https://github.com/aws/aws-amplify)
 
-## Features
-
 ✅ React Navigation   
 
 ✅ Redux   
