@@ -8,13 +8,13 @@ Easy authentication for your next React Native app.
 
 ## Features   
 
+✅ Preconfigured, production tested authentication flow  
+
 ✅ React Navigation   
 
 ✅ Redux   
 
-✅ Amplify React Native   
-
-✅ Preconfigured, production tested Auth flow    
+✅ Amplify React Native     
 
 ✅ Opinionated yet configurable   
 
