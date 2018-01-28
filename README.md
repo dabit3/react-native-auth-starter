@@ -21,6 +21,13 @@ Easy authentication for your next React Native app.
 ✅ Themeable   
 
 
+## Roadmap    
+
+⬜️ Social Logins / Federated Identities
+
+⬜️ Optional intro / onboarding flow   
+
+
 ## Getting Started   
 
 1. Clone project   
