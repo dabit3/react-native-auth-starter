@@ -12,6 +12,8 @@ Easy authentication for your next React Native app.
 
 ✅ Redux   
 
+✅ Amplify React Native   
+
 ✅ Opinionated yet configurable   
 
 ✅ Themeable   
