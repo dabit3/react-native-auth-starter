@@ -14,7 +14,7 @@ Easy authentication for your next React Native app.
 
 ✅ Amplify React Native   
 
-✅ Preconfigured Auth flow    
+✅ Preconfigured, production tested Auth flow    
 
 ✅ Opinionated yet configurable   
 
