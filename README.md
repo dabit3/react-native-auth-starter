@@ -34,15 +34,21 @@ Easy authentication for your next React Native app.
 
 1. Clone project   
 
+```
 git clone https://github.com/dabit3/react-native-auth-starter.git
+```
 
 2. Change into react-native-auth-starter directory   
 
+```
 cd react-native-auth-starter
+```
 
 3. Install dependencies   
 
+```
 yarn || npm install
+```
 
 4. Configure AWS Amplify settings or hook up your own auth provider (index.js).   
 
