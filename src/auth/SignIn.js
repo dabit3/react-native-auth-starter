@@ -5,7 +5,6 @@ import {
   View,
   TextInput,
   StyleSheet,
-  StatusBar,
   TouchableOpacity,
   ActivityIndicator,
   Image
@@ -14,33 +13,17 @@ import {
 import { authenticate } from '../actions'
 import { fonts, colors } from '../theme'
 
-import { Auth } from 'aws-amplify-react-native'
 import { connect } from 'react-redux'
 
 import Input from '../components/Input'
+import Button from '../components/Button'
 
 class SignIn extends Component<{}> {
   state = {
     username: '',
     password: ''
   }
-
-  componentDidMount() {
-    StatusBar.setHidden(true)
-  }
-
-  checkAuth() {
-    Auth.currentSession()
-      .then(data => {
-        console.log('data: ', data)
-        console.log('this will have a session if available')
-      })
-      .catch(err => {
-        console.log('error:', err)
-        console.log('this will fire if no session')
-      })
-  }
-
+  
   onChangeText = (key, value) => {
     this.setState({
       [key]: value
@@ -72,26 +55,24 @@ class SignIn extends Component<{}> {
         <View style={styles.inputContainer}>
           <Input
             placeholder="User Name"
+            type='username'
             onChangeText={this.onChangeText}
             value={this.state.username}
           />
           <Input
             placeholder="Password"
+            type='password'
             onChangeText={this.onChangeText}
             value={this.state.password}
+            secureTextEntry
           />
         </View>
 
-        <TouchableOpacity onPress={this.signIn.bind(this)}>
-          <View style={styles.button}>
-            <Text style={styles.buttonText}>Login</Text>
-            {
-              isAuthenticating && (
-                <View style={styles.activityIndicator}><ActivityIndicator color={colors.primary} /></View>
-              )
-            }
-          </View>
-        </TouchableOpacity>
+        <Button
+          isLoading={isAuthenticating}
+          title='Sign In'
+          onPress={this.signIn.bind(this)}
+        />      
         <Text style={[styles.errorMessage, signInError && { color: 'black' }]}>Error logging in. Please try again.</Text>
       </View>
     );
@@ -122,23 +103,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
     color: 'transparent'
   },
-  activityIndicator: {
-    transform: [{scale: 0.70}],
-    marginTop: 3.5,
-    marginLeft: 5
-  },
   inputContainer: {
     marginTop: 20
-  },
-  button: {
-    marginTop: 25,
-    flexDirection: 'row'
-  },
-  buttonText: {
-    color: colors.primary,
-    fontSize: 22,
-    fontFamily: fonts.light,
-    letterSpacing: 0.5
   },
   container: {
     flex: 1,

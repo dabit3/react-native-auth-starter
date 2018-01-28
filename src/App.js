@@ -1,4 +1,5 @@
 import React from 'react'
+import { StatusBar } from 'react-native'
 
 import Tabs from './auth/Tabs'
 import Nav from './nav/Nav'
@@ -6,6 +7,9 @@ import Nav from './nav/Nav'
 import { connect } from 'react-redux'
 
 class App extends React.Component {
+  componentDidMount() {
+    StatusBar.setHidden(true)
+  }
   checkAuth() {
     console.log('navigation state change')
     Auth.currentSession()

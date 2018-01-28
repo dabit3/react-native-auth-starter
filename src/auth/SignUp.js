@@ -17,6 +17,9 @@ import { connect } from 'react-redux'
 import { fonts, colors } from '../theme'
 import { createUser } from '../actions'
 
+import Input from '../components/Input'
+import Button from '../components/Button'
+
 class SignUp extends Component<{}> {
   state = {
     username: '',
@@ -53,48 +56,28 @@ class SignUp extends Component<{}> {
           sign up to continue
         </Text>
         <View style={styles.inputContainer}>
-          <TextInput
-            autoCapitalize='none'
-            autoCorrect={false}
-            style={styles.input}
+          <Input
             placeholder="User Name"
-            placeholderTextColor="#a0a0a0"
-            onChangeText={value => this.onChangeText('username', value)}
-            underlineColorAndroid='transparent'
+            type='username'
+            onChangeText={this.onChangeText}
           />
-          <TextInput
-            autoCorrect={false}
-            autoCapitalize='none'
-            style={styles.input}
+          <Input
             placeholder="Email"
-            placeholderTextColor="#a0a0a0"
-            onChangeText={value => this.onChangeText('email', value)}
-            underlineColorAndroid='transparent'
+            type='email'
+            onChangeText={this.onChangeText}
           />
-          <TextInput
-            autoCorrect={false}
-            autoCapitalize='none'
-            style={styles.input}
+          <Input
             placeholder="Password"
-            placeholderTextColor="#a0a0a0"
-            onChangeText={value => this.onChangeText('password', value)}
             secureTextEntry
-            underlineColorAndroid='transparent'
+            type='password'
+            onChangeText={this.onChangeText}
           />
         </View>
-
-        <View>
-          <TouchableOpacity onPress={this.signUp.bind(this)}>
-            <View style={styles.button}>
-              <Text style={styles.buttonText}>Sign Up</Text>
-              {
-                isAuthenticating && (
-                  <View style={styles.activityIndicator}><ActivityIndicator color={colors.primary} /></View>
-                )
-              }
-            </View>
-          </TouchableOpacity>
-        </View>
+        <Button
+          title='Sign Up'
+          onPress={this.signUp.bind(this)}
+          isLoading={isAuthenticating}
+        />
         <Text style={[styles.errorMessage, signUpError && { color: 'black' }]}>Error logging in. Please try again.</Text>
       </View>
     );
@@ -130,24 +113,6 @@ const styles = StyleSheet.create({
     color: '#666',
     fontSize: 24,
     marginTop: 5
-  },
-  input: {
-    height: 45,
-    marginBottom: 15,
-    fontFamily: fonts.light,
-    borderBottomWidth: 1.5,
-    fontSize: 16,
-    borderBottomColor: colors.primary
-  },
-  button: {
-    marginTop: 25,
-    flexDirection: 'row'
-  },
-  buttonText: {
-    color: colors.primary,
-    fontSize: 22,
-    fontFamily: fonts.light,
-    letterSpacing: 0.5
   },
   heading: {
     flexDirection: 'row'
