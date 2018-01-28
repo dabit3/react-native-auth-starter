@@ -5,13 +5,12 @@ import {
   View,
   TextInput,
   StyleSheet,
-  Button,
   TouchableOpacity,
   Image,
   ActivityIndicator
 } from 'react-native';
 
-import { Auth } from 'aws-amplify-react-native';
+import { Auth } from 'aws-amplify-react-native'
 import { connect } from 'react-redux'
 
 import { fonts, colors } from '../theme'

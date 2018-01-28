@@ -20,6 +20,8 @@ Easy authentication for your next React Native app.
 
 ✅ Themeable   
 
+✅ Cross-Platform   
+
 
 ## Roadmap    
 

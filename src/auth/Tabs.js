@@ -41,8 +41,12 @@ const routes = {
 }
 
 const routeConfig = {
+  tabBarPosition: 'bottom',
   tabBarOptions: {
+    showLabel: true,
     activeTintColor: colors.primary,
+    inactiveTintColor: colors.secondary,
+    indicatorStyle: { backgroundColor: colors.secondary },
     labelStyle: {
       fontFamily: fonts.base,
       fontSize: 12
