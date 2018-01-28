@@ -58,6 +58,7 @@ class SignUp extends Component<{}> {
             autoCorrect={false}
             style={styles.input}
             placeholder="User Name"
+            placeholderTextColor="#a0a0a0"
             onChangeText={value => this.onChangeText('username', value)}
             underlineColorAndroid='transparent'
           />
@@ -66,6 +67,7 @@ class SignUp extends Component<{}> {
             autoCapitalize='none'
             style={styles.input}
             placeholder="Email"
+            placeholderTextColor="#a0a0a0"
             onChangeText={value => this.onChangeText('email', value)}
             underlineColorAndroid='transparent'
           />
@@ -74,6 +76,7 @@ class SignUp extends Component<{}> {
             autoCapitalize='none'
             style={styles.input}
             placeholder="Password"
+            placeholderTextColor="#a0a0a0"
             onChangeText={value => this.onChangeText('password', value)}
             secureTextEntry
             underlineColorAndroid='transparent'
@@ -120,12 +123,12 @@ const styles = StyleSheet.create({
   greeting: {
     marginTop: 20,
     fontFamily: fonts.light,
-    fontSize: 20
+    fontSize: 24
   },
   greeting2: {
     fontFamily: fonts.light,
     color: '#666',
-    fontSize: 20,
+    fontSize: 24,
     marginTop: 5
   },
   input: {
@@ -133,6 +136,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     fontFamily: fonts.light,
     borderBottomWidth: 1.5,
+    fontSize: 16,
     borderBottomColor: colors.primary
   },
   button: {
@@ -141,7 +145,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: colors.primary,
-    fontSize: 18,
+    fontSize: 22,
     fontFamily: fonts.light,
     letterSpacing: 0.5
   },
@@ -149,8 +153,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   headingImage: {
-    width: 32,
-    height: 32
+    width: 38,
+    height: 38
   },
   errorMessage: {
     fontFamily: fonts.base,

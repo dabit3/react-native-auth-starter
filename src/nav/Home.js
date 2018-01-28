@@ -52,7 +52,7 @@ class Home extends React.Component {
             style={{ tintColor: colors.primary, width: width / 2, height: width / 2, transform: [{scale: this.AnimatedScale}]}}
             resizeMode='contain'
           />
-          <Text onPress={this.navigate.bind(this)}>Navigate</Text>
+          {/* <Text onPress={this.navigate.bind(this)}>Navigate</Text> */}
         </View>
       </View>
     )

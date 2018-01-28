@@ -8,8 +8,8 @@ import SignUp from './SignUp'
 
 const styles = StyleSheet.create({
   icon: {
-    width: 24,
-    height: 24
+    width: 26,
+    height: 26
   }
 })
 
@@ -45,7 +45,7 @@ const routeConfig = {
     activeTintColor: colors.primary,
     labelStyle: {
       fontFamily: fonts.base,
-      fontSize: 9
+      fontSize: 12
     },
     style: {
       backgroundColor: 'white',

@@ -61,7 +61,6 @@ class SignIn extends Component<{}> {
             style={styles.headingImage}
             resizeMode="contain"
           />
-          
         </View>
         <Text style={styles.greeting}>
           Welcome back,
@@ -75,6 +74,7 @@ class SignIn extends Component<{}> {
             autoCorrect={false}
             style={styles.input}
             placeholder="User Name"
+            placeholderTextColor="#a0a0a0"
             onChangeText={value => this.onChangeText('username', value)}
             underlineColorAndroid='transparent'
           />
@@ -83,6 +83,7 @@ class SignIn extends Component<{}> {
             autoCapitalize='none'
             style={styles.input}
             placeholder="Password"
+            placeholderTextColor="#a0a0a0"
             onChangeText={value => this.onChangeText('password', value)}
             underlineColorAndroid='transparent'
             secureTextEntry
@@ -122,8 +123,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   headingImage: {
-    width: 32,
-    height: 32
+    width: 38,
+    height: 38
   },
   errorMessage: {
     fontFamily: fonts.base,
@@ -145,7 +146,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: colors.primary,
-    fontSize: 18,
+    fontSize: 22,
     fontFamily: fonts.light,
     letterSpacing: 0.5
   },
@@ -157,12 +158,12 @@ const styles = StyleSheet.create({
   greeting: {
     marginTop: 20,
     fontFamily: fonts.light,
-    fontSize: 20
+    fontSize: 24
   },
   greeting2: {
     fontFamily: fonts.light,
     color: '#666',
-    fontSize: 20,
+    fontSize: 24,
     marginTop: 5
   },
   input: {
@@ -170,6 +171,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     fontFamily: fonts.light,
     borderBottomWidth: 1.5,
+    fontSize: 16,
     borderBottomColor: colors.primary
   }
 });
