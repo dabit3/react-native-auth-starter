@@ -12,7 +12,9 @@ const initialState = {
   loggedIn: false,
   user: {},
   signInError: false,
-  signUpError: false
+  signUpError: false,
+  signInErrorMessage: '',
+  signUpErrorMessage: ''
 }
 
 export default (state = initialState, action) => {
@@ -26,7 +28,8 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isAuthenticating: false,
-        signUpError: true
+        signUpError: true,
+        signUpErrorMessage: action.error.message
       }
     case LOG_IN:
       return {
@@ -46,6 +49,7 @@ export default (state = initialState, action) => {
         ...state,
         isAuthenticating: false,
         signInError: true,
+        signInErrorMessage: action.error.message
       }
     case LOG_OUT:
       return {

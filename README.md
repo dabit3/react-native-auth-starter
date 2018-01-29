@@ -29,8 +29,6 @@ Easy authentication for your next React Native app.
 
 ⬜️ Optional intro / onboarding flow    
 
-⬜️ Better error messages
-
 
 ## Getting Started   
 

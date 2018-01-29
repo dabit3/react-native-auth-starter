@@ -38,7 +38,6 @@ class SignIn extends Component<{}> {
   render() {
     const { fontsLoaded } = this.state
     const { auth: { signInErrorMessage, isAuthenticating, signInError }} = this.props
-    console.log('signInErrorMessage:', signInErrorMessage)
     return (
       <View style={styles.container}>
         <View style={styles.heading}>

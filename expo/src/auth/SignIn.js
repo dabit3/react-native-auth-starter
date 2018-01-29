@@ -47,7 +47,7 @@ class SignIn extends Component<{}> {
   
   render() {
     const { fontsLoaded } = this.state
-    const { auth: { isAuthenticating, signInError }} = this.props
+    const { auth: { isAuthenticating, signInError, signInErrorMessage }} = this.props
     return (
       <View style={styles.container}>
         <View style={styles.heading}>
@@ -85,6 +85,7 @@ class SignIn extends Component<{}> {
           onPress={this.signIn.bind(this)}
         />      
         <Text style={[styles.errorMessage, signInError && { color: 'black' }, fontsLoaded && { fontFamily: fonts.base }]}>Error logging in. Please try again.</Text>
+        <Text style={[styles.errorMessage, signInError && { color: 'black' }, fontsLoaded && { fontFamily: fonts.base }]}>{signInErrorMessage}</Text>
       </View>
     );
   }

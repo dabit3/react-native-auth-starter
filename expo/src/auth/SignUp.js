@@ -48,7 +48,7 @@ class SignUp extends Component<{}> {
   }
   
   render() {
-    const { auth: { isAuthenticating, signUpError }} = this.props
+    const { auth: { isAuthenticating, signUpError, signUpErrorMessage }} = this.props
     const { fontsLoaded } = this.state
     return (
       <View style={styles.container}>
@@ -89,6 +89,7 @@ class SignUp extends Component<{}> {
           isLoading={isAuthenticating}
         />
         <Text style={[styles.errorMessage, signUpError && { color: 'black' }, fontsLoaded && { fontFamily: fonts.base }]}>Error logging in. Please try again.</Text>
+        <Text style={[styles.errorMessage, signUpError && { color: 'black' }, fontsLoaded && { fontFamily: fonts.base }]}>{signUpErrorMessage}</Text>
       </View>
     );
   }
