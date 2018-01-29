@@ -10,10 +10,11 @@ import {
   Image
 } from 'react-native';
 
+import { Auth } from 'aws-amplify-react-native'
+import { connect } from 'react-redux'
+
 import { authenticate } from '../actions'
 import { fonts, colors } from '../theme'
-
-import { connect } from 'react-redux'
 
 import Input from '../components/Input'
 import Button from '../components/Button'
