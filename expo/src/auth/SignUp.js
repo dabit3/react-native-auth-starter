@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   Platform,
   Text,
@@ -12,6 +12,7 @@ import {
 
 import { Auth } from 'aws-amplify-react-native'
 import { connect } from 'react-redux'
+import { Font } from 'expo'
 
 import { fonts, colors } from '../theme'
 import { createUser } from '../actions'
@@ -23,7 +24,16 @@ class SignUp extends Component<{}> {
   state = {
     username: '',
     password: '',
-    email: ''
+    email: '',
+    fontsLoaded: false
+  }
+
+  async componentDidMount() {
+    await Font.loadAsync({
+      'Lato-Light': require('../assets/fonts/Lato-Light.ttf'),
+      'Lato-Regular': require('../assets/fonts/Lato-Regular.ttf')
+    });
+    this.setState({ fontsLoaded: true })
   }
 
   onChangeText = (key, value) => {
@@ -39,6 +49,7 @@ class SignUp extends Component<{}> {
   
   render() {
     const { auth: { isAuthenticating, signUpError }} = this.props
+    const { fontsLoaded } = this.state
     return (
       <View style={styles.container}>
         <View style={styles.heading}>
@@ -48,10 +59,10 @@ class SignUp extends Component<{}> {
             resizeMode="contain"
           />
         </View>
-        <Text style={styles.greeting}>
+        <Text style={[styles.greeting, fontsLoaded && { fontFamily: fonts.light }]}>
           Welcome,
         </Text>
-        <Text style={styles.greeting2}>
+        <Text style={[styles.greeting2, fontsLoaded && { fontFamily: fonts.light }]}>
           sign up to continue
         </Text>
         <View style={styles.inputContainer}>
@@ -77,7 +88,7 @@ class SignUp extends Component<{}> {
           onPress={this.signUp.bind(this)}
           isLoading={isAuthenticating}
         />
-        <Text style={[styles.errorMessage, signUpError && { color: 'black' }]}>Error logging in. Please try again.</Text>
+        <Text style={[styles.errorMessage, signUpError && { color: 'black' }, fontsLoaded && { fontFamily: fonts.base }]}>Error logging in. Please try again.</Text>
       </View>
     );
   }
@@ -103,12 +114,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 40
   },
   greeting: {
-    marginTop: 20,
-    fontFamily: fonts.light,
+    marginTop: 20,    
     fontSize: 24
   },
   greeting2: {
-    fontFamily: fonts.light,
     color: '#666',
     fontSize: 24,
     marginTop: 5
@@ -121,7 +130,6 @@ const styles = StyleSheet.create({
     height: 38
   },
   errorMessage: {
-    fontFamily: fonts.base,
     fontSize: 12,
     marginTop: 10,
     color: 'transparent'

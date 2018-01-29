@@ -6,11 +6,11 @@ import {
 
 import { colors, fonts } from '../theme'
 
-export default ({ type, placeholder, onChangeText, value, ...props }) => (
+export default ({ placeholder, onChangeText, type, ...props }) => (
   <TextInput
     autoCapitalize='none'
     autoCorrect={false}
-    style={styles.input}
+    style={[styles.input]}
     placeholder={placeholder}
     placeholderTextColor="#a0a0a0"
     onChangeText={value => onChangeText(type, value)}
@@ -23,9 +23,9 @@ const styles = StyleSheet.create({
   input: {
     height: 45,
     marginBottom: 15,
-    fontFamily: fonts.light,
     borderBottomWidth: 1.5,
     fontSize: 16,
-    borderBottomColor: colors.primary
+    borderBottomColor: colors.primary,
+    fontFamily: fonts.light
   }
 })

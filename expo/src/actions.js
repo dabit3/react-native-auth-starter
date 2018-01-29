@@ -21,9 +21,10 @@ function signUpSuccess(user) {
   }
 }
 
-function signUpFailure() {
+function signUpFailure(err) {
   return {
-    type: SIGN_UP_FAILURE
+    type: SIGN_UP_FAILURE,
+    error: err
   }
 }
 
@@ -40,7 +41,7 @@ export function createUser(username, password, email) {
       dispatch(signUpSuccess(data))
     })
     .catch(err => {
-      console.log('error from signUp: ', err)
+      console.log('error signing up: ', err)
       dispatch(signUpFailure(err))
     });
   }
@@ -65,9 +66,10 @@ function logInSuccess(user) {
   }
 }
 
-function logInFailure() {
+function logInFailure(err) {
   return {
-    type: LOG_IN_FAILURE
+    type: LOG_IN_FAILURE,
+    error: err
   }
 }
 

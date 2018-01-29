@@ -45,22 +45,15 @@ class Home extends React.Component {
     })
   }
   render() {
-    const { userConfirmed } = this.props
     return (
       <View style={styles.container}>
-        <View>
+        <View style={styles.homeContainer}>
           <Text style={styles.welcome}>Welcome</Text>
           <Animated.Image
             source={require('../assets/boomboxcropped.png')}
             style={{ tintColor: colors.primary, width: width / 2, height: width / 2, transform: [{scale: this.AnimatedScale}]}}
             resizeMode='contain'
           />
-          {
-            !userConfirmed && (
-              <Text style={styles.registration}>Please check your email to confirm your registration</Text>
-            )
-          }
-          {/* <Text onPress={this.navigate.bind(this)}>Navigate</Text> */}
         </View>
       </View>
     )
@@ -73,6 +66,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1
+  },
+  homeContainer: {
+    alignItems: 'center'
   },
   welcome: {
     fontFamily: fonts.light,

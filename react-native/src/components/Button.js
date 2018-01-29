@@ -9,10 +9,10 @@ import {
 
 import { fonts, colors } from '../theme'
 
-export default ({ onPress, title, isLoading }) => (
+export default ({ title, onPress, isLoading }) => (
   <TouchableOpacity onPress={onPress}>
     <View style={styles.button}>
-      <Text style={styles.buttonText}>{title}</Text>
+      <Text style={[styles.buttonText]}>{title}</Text>
       {
         isLoading && (
           <View style={styles.activityIndicator}>
@@ -31,8 +31,8 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: colors.primary,
-    fontSize: 22,
     fontFamily: fonts.light,
+    fontSize: 22,
     letterSpacing: 0.5
   },
   activityIndicator: {
