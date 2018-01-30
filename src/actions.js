@@ -8,6 +8,8 @@ import {
   SIGN_UP_FAILURE
 } from './reducers/auth'
 
+import { Auth } from 'aws-amplify'
+
 function signUp() {
   return {
     type: SIGN_UP
@@ -28,13 +30,16 @@ function signUpFailure(err) {
   }
 }
 
-export function createUser(username, password, email) {
+export function createUser(username, password, email, phone) {
   return (dispatch) => {
     dispatch(signUp())
     Auth.signUp({
-      username,
-      password,
-      email
+      'username': username,
+      'password': password,
+      'attributes': {
+        'email': email,
+        'phone_number': phone
+      }
     })
     .then(data => {
       console.log('data from signUp: ', data)

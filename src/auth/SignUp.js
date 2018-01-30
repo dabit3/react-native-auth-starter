@@ -10,7 +10,7 @@ import {
   ActivityIndicator
 } from 'react-native';
 
-import { Auth } from 'aws-amplify-react-native'
+import { Auth } from 'aws-amplify'
 import { connect } from 'react-redux'
 
 import { fonts, colors } from '../theme'
@@ -23,7 +23,8 @@ class SignUp extends Component<{}> {
   state = {
     username: '',
     password: '',
-    email: ''
+    email: '',
+    phone: ''
   }
 
   onChangeText = (key, value) => {
@@ -33,8 +34,8 @@ class SignUp extends Component<{}> {
   }
 
   signUp() {
-    const { username, password, email } = this.state
-    this.props.dispatchCreateUser(username, password, email)
+    const { username, password, email, phone } = this.state
+    this.props.dispatchCreateUser(username, password, email, phone)
   }
   
   render() {
@@ -66,6 +67,11 @@ class SignUp extends Component<{}> {
             onChangeText={this.onChangeText}
           />
           <Input
+            placeholder="Phone Number"
+            type='phone'
+            onChangeText={this.onChangeText}
+          />
+          <Input
             placeholder="Password"
             secureTextEntry
             type='password'
@@ -89,7 +95,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-  dispatchCreateUser: (username, password, email) => createUser(username, password, email)
+  dispatchCreateUser: (username, password, email, phone) => createUser(username, password, email, phone)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp)

@@ -48,12 +48,35 @@ cd react-native-auth-starter
 
 ```
 yarn || npm install
+react-native link amazon-cognito-identity-js
 ```
 
 4. Configure AWS Amplify settings or hook up your own auth provider (index.js).   
 
+## Automated Configuration
+
+Using the [awsmobile-cli](https://github.com/aws/awsmobile-cli):
 ```
-import Amplify from 'aws-amplify-react-native'
+$ npm install -g awsmobile-cli
+$ cd ./react-native-auth-starter
+$ awsmobile init
+ > You can choose defaults for all question answers
+$ awsmobile enable user-signin
+```
+
+Then within index.js:
+
+```
+import Amplify from 'aws-amplify';
+import AWS from 'aws-exports';
+Amplify.configure(AWS);
+```
+
+Run it!
+
+## Manual Configuration
+```
+import Amplify from 'aws-amplify'
 
 Amplify.configure({
   Auth: {
