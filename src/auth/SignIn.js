@@ -7,13 +7,14 @@ import {
   StyleSheet,
   TouchableOpacity,
   ActivityIndicator,
-  Image
+  Image,
+  Modal
 } from 'react-native';
 
 import { Auth } from 'aws-amplify'
 import { connect } from 'react-redux'
 
-import { authenticate } from '../actions'
+import { authenticate, confirmUserLogin } from '../actions'
 import { fonts, colors } from '../theme'
 
 import Input from '../components/Input'
@@ -22,7 +23,8 @@ import Button from '../components/Button'
 class SignIn extends Component<{}> {
   state = {
     username: '',
-    password: ''
+    password: '',
+    accessCode: ''
   }
   
   onChangeText = (key, value) => {
@@ -35,10 +37,20 @@ class SignIn extends Component<{}> {
     const { username, password } = this.state
     this.props.dispatchAuthenticate(username, password)
   }
+
+  confirm() {
+    const { authCode } = this.state
+    this.props.dispatchConfirmUserLogin(authCode)
+  }
   
   render() {
     const { fontsLoaded } = this.state
-    const { auth: { signInErrorMessage, isAuthenticating, signInError }} = this.props
+    const { auth: {
+      signInErrorMessage,
+      isAuthenticating,
+      signInError,
+      showSignInConfirmationModal
+    }} = this.props
     return (
       <View style={styles.container}>
         <View style={styles.heading}>
@@ -77,12 +89,34 @@ class SignIn extends Component<{}> {
         />      
         <Text style={[styles.errorMessage, signInError && { color: 'black' }]}>Error logging in. Please try again.</Text>
         <Text style={[styles.errorMessage, signInError && { color: 'black' }]}>{signInErrorMessage}</Text>
+        {
+          showSignInConfirmationModal && (
+            <Modal>
+              <View style={styles.modal}>
+                <Input
+                  placeholder="Authorization Code"
+                  type='authCode'
+                  keyboardType='numeric'
+                  onChangeText={this.onChangeText}
+                  value={this.state.authCode}
+                  keyboardType='numeric'
+                />
+                <Button
+                  title='Confirm'
+                  onPress={this.confirm.bind(this)}
+                  isLoading={isAuthenticating}
+                />
+              </View>
+            </Modal>
+          )
+        }
       </View>
     );
   }
 }
 
 const mapDispatchToProps = {
+  dispatchConfirmUserLogin: authCode => confirmUserLogin(authCode),
   dispatchAuthenticate: (username, password) => authenticate(username, password)
 }
 
@@ -93,6 +127,11 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn)
 
 const styles = StyleSheet.create({
+  modal: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   heading: {
     flexDirection: 'row'
   },

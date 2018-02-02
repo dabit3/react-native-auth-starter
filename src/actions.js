@@ -6,7 +6,8 @@ import {
   SIGN_UP,
   SIGN_UP_SUCCESS,
   SIGN_UP_FAILURE,
-  SHOW_CONFIRMATION_MODAL,
+  SHOW_SIGN_IN_CONFIRMATION_MODAL,
+  SHOW_SIGN_UP_CONFIRMATION_MODAL,
   CONFIRM_SIGNUP,
   CONFIRM_SIGNUP_SUCCESS,
   CONFIRM_SIGNUP_FAILURE,
@@ -15,6 +16,7 @@ import {
   CONFIRM_LOGIN_FAILURE
 } from './reducers/auth'
 
+import { Alert } from 'react-native'
 import { Auth } from 'aws-amplify'
 
 function signUp() {
@@ -58,7 +60,7 @@ export function createUser(username, password, email, phone_number) {
     .then(data => {
       console.log('data from signUp: ', data)
       dispatch(signUpSuccess(data))
-      dispatch(showConfirmationModal())
+      dispatch(showSignUpConfirmationModal())
     })
     .catch(err => {
       console.log('error signing up: ', err)
@@ -82,7 +84,7 @@ function logOut() {
 function logInSuccess(user) {
   return {
     type: LOG_IN_SUCCESS,
-    user
+    user: user
   }
 }
 
@@ -98,8 +100,8 @@ export function authenticate(username, password) {
     dispatch(logIn())
     Auth.signIn(username, password)
       .then(user => {
-        console.log('user from signIn: ', user)
         dispatch(logInSuccess(user))
+        dispatch(showSignInConfirmationModal())
       })
       .catch(err => {
         console.log('errror from signIn: ', err)
@@ -108,9 +110,52 @@ export function authenticate(username, password) {
   }
 }
 
-export function showConfirmationModal() {
+export function showSignInConfirmationModal() {
   return {
-    type: SHOW_CONFIRMATION_MODAL
+    type: SHOW_SIGN_IN_CONFIRMATION_MODAL
+  }
+}
+
+export function showSignUpConfirmationModal() {
+  return {
+    type: SHOW_SIGN_UP_CONFIRMATION_MODAL
+  }
+}
+
+export function confirmUserLogin(authCode) {
+  return (dispatch, getState) => {
+    dispatch(confirmLogIn())
+    const { auth: { user }} = getState()
+    console.log('state: ', getState())
+    Auth.confirmSignIn(user, authCode)
+      .then(data => {
+        console.log('data from confirmLogin: ', data)
+        dispatch(confirmLoginSuccess(data))
+      })
+      .catch(err => {
+        console.log('error signing in: ', err)
+        dispatch(confirmSignUpFailure(err))
+      })
+  }
+}
+
+function confirmLogIn() {
+  return {
+    type: CONFIRM_LOGIN
+  }
+}
+
+function confirmLoginSuccess(user) {
+  return {
+    type: CONFIRM_LOGIN_SUCCESS,
+    user
+  }
+}
+
+function confirmLoginFailure() {
+  return {
+    type: CONFIRM_LOGIN_FAILURE,
+    user
   }
 }
 
@@ -120,7 +165,10 @@ export function confirmUserSignUp(username, authCode) {
     Auth.confirmSignUp(username, authCode)
       .then(data => {
         console.log('data from confirmSignUp: ', data)
-        dispatch(confirmSignUpSuccess(data))
+        dispatch(confirmSignUpSuccess())
+        setTimeout(() => {
+          Alert.alert('Successfully Signed Up!', 'Please Sign')
+        }, 0)
       })
       .catch(err => {
         console.log('error signing up: ', err)
@@ -135,10 +183,9 @@ function confirmSignUp() {
   }
 }
 
-function confirmSignUpSuccess(user) {
+function confirmSignUpSuccess() {
   return {
-    type: CONFIRM_SIGNUP_SUCCESS,
-    user
+    type: CONFIRM_SIGNUP_SUCCESS
   }
 }
 

@@ -44,12 +44,19 @@ class SignUp extends Component<{}> {
 
   confirm() {
     const { authCode, username } = this.state
-    this.props.dispatchConfirmUser(username, authCode);
+    this.props.dispatchConfirmUser(username, authCode)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { auth: { showSignUpConfirmationModal }} = nextProps
+    if (!showSignUpConfirmationModal && this.props.auth.showSignUpConfirmationModal) {
+      this.setState(initialState)
+    }
   }
 
   render() {
     const { auth: {
-      showConfirmationModal,
+      showSignUpConfirmationModal,
       isAuthenticating,
       signUpError,
       signUpErrorMessage
@@ -71,16 +78,19 @@ class SignUp extends Component<{}> {
         </Text>
         <View style={styles.inputContainer}>
           <Input
+            value={this.state.username}
             placeholder="User Name"
             type='username'
             onChangeText={this.onChangeText}
           />
           <Input
+            value={this.state.email}
             placeholder="Email"
             type='email'
             onChangeText={this.onChangeText}
           />
           <Input
+            value={this.state.password}
             placeholder="Password"
             secureTextEntry
             type='password'
@@ -102,7 +112,7 @@ class SignUp extends Component<{}> {
         <Text style={[styles.errorMessage, signUpError && { color: 'black' }]}>Error logging in. Please try again.</Text>
         <Text style={[styles.errorMessage, signUpError && { color: 'black' }]}>{signUpErrorMessage}</Text>
         {
-          showConfirmationModal && (
+          showSignUpConfirmationModal && (
             <Modal>
               <View style={styles.modal}>
                 <Input

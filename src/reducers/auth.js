@@ -7,7 +7,8 @@ export const SIGN_UP = 'SIGN_UP'
 export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS'
 export const SIGN_UP_FAILURE = 'SIGN_UP_FAILURE'
 
-export const SHOW_CONFIRMATION_MODAL = 'SHOW_CONFIRMATION_MODAL'
+export const SHOW_SIGN_IN_CONFIRMATION_MODAL = 'SHOW_SIGN_IN_CONFIRMATION_MODAL'
+export const SHOW_SIGN_UP_CONFIRMATION_MODAL = 'SHOW_SIGN_UP_CONFIRMATION_MODAL'
 
 export const CONFIRM_SIGNUP = 'CONFIRM_SIGNUP'
 export const CONFIRM_SIGNUP_SUCCESS = 'CONFIRM_SIGNUP_SUCCESS'
@@ -25,7 +26,8 @@ const initialState = {
   signUpError: false,
   signInError: false,
 
-  showConfirmationModal: false,
+  showSignUpConfirmationModal: false,
+  showSignInConfirmationModal: false,
 
   confirmSignUpError: false,
   confirmLoginError: false,
@@ -39,11 +41,17 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch(action.type) {
-    case SHOW_CONFIRMATION_MODAL:
+    case SHOW_SIGN_IN_CONFIRMATION_MODAL:
       return {
         ...state,
         isAuthenticating: false,
-        showConfirmationModal: true
+        showSignInConfirmationModal: true
+      }
+      case SHOW_SIGN_UP_CONFIRMATION_MODAL:
+      return {
+        ...state,
+        isAuthenticating: false,
+        showSignUpConfirmationModal: true
       }
     case CONFIRM_SIGNUP:
       return {
@@ -54,9 +62,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isAuthenticating: false,
-        user: action.user,
-        loggedIn: true,
-        showConfirmationModal: false
+        showSignUpConfirmationModal: false
       }
     case CONFIRM_SIGNUP_FAILURE:
       return {
@@ -69,6 +75,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isAuthenticating: true,
+      }
+    case SIGN_UP_SUCCESS:
+      return {
+        ...state,
+        isAuthenticating: false
       }
     case SIGN_UP_FAILURE:
       return {
@@ -83,16 +94,11 @@ export default (state = initialState, action) => {
         isAuthenticating: true,
         signInError: false
       }
-    case SIGN_UP_SUCCESS:
-      return {
-        ...state,
-        isAuthenticating: false
-      }
     case LOG_IN_SUCCESS:
       return {
-        loggedIn: true,
         isAuthenticating: false,
-        user: action.user
+        user: action.user,
+        showSignInConfirmationModal: true
       }
     case LOG_IN_FAILURE:
       return {
@@ -101,6 +107,26 @@ export default (state = initialState, action) => {
         signInError: true,
         signInErrorMessage: action.error.message
       }
+    case CONFIRM_LOGIN: {
+      return {
+        ...state,
+        isAuthenticating: true
+      }
+    }
+    case CONFIRM_LOGIN_SUCCESS:
+      return {
+        ...state,
+        isAuthenticating: false,
+        user: action.user,
+        showSignInConfirmationModal: false,
+        loggedIn: true
+      }
+    case CONFIRM_LOGIN_FAILURE: {
+      return {
+        ...state,
+        isAuthenticating: false
+      }
+    }
     case LOG_OUT:
       return {
         ...state,
