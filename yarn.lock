@@ -70,7 +70,14 @@ align-text@^0.1.1, align-text@^0.1.3:
     longest "^1.0.1"
     repeat-string "^1.5.2"
 
-amazon-cognito-identity-js@^1.19.0, amazon-cognito-identity-js@^1.25.0:
+amazon-cognito-identity-js@1.29.0:
+  version "1.29.0"
+  resolved "https://registry.yarnpkg.com/amazon-cognito-identity-js/-/amazon-cognito-identity-js-1.29.0.tgz#bf1180a846b642e4aece3d970566d44e470c8162"
+  dependencies:
+    aws-sdk "^2.6.0"
+    js-cookie "^2.1.4"
+
+amazon-cognito-identity-js@^1.25.0:
   version "1.31.0"
   resolved "https://registry.yarnpkg.com/amazon-cognito-identity-js/-/amazon-cognito-identity-js-1.31.0.tgz#1dcd0f26ce9404c198a35468e8bb00410503021d"
   dependencies:
@@ -244,14 +251,13 @@ aws-amplify-react-native@^0.1.24:
     axios "^0.17.1"
     babel-preset-es2015 "^6.24.1"
 
-aws-amplify@^0.1.36:
-  version "0.1.36"
-  resolved "https://registry.yarnpkg.com/aws-amplify/-/aws-amplify-0.1.36.tgz#44ab88ef704158ca51b10644c075315d6cecd0df"
+aws-amplify@^0.2.x:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/aws-amplify/-/aws-amplify-0.2.2.tgz#d7c62acdeb345016f5985ee24e7a75bd7f80cf6a"
   dependencies:
-    amazon-cognito-identity-js "^1.19.0"
+    amazon-cognito-identity-js "1.29.0"
     aws-sdk "2.177.0"
     axios "^0.17.0"
-    querystring-browser "^1.0.4"
 
 aws-sdk@2.177.0:
   version "2.177.0"
@@ -259,6 +265,20 @@ aws-sdk@2.177.0:
   dependencies:
     buffer "4.9.1"
     crypto-browserify "1.0.9"
+    events "^1.1.1"
+    jmespath "0.15.0"
+    querystring "0.2.0"
+    sax "1.2.1"
+    url "0.10.3"
+    uuid "3.1.0"
+    xml2js "0.4.17"
+    xmlbuilder "4.2.1"
+
+aws-sdk@^2.6.0:
+  version "2.188.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.188.0.tgz#9062abc7dba6393459fa2f3423cf5d294f004611"
+  dependencies:
+    buffer "4.9.1"
     events "^1.1.1"
     jmespath "0.15.0"
     querystring "0.2.0"
@@ -3695,10 +3715,6 @@ qs@~6.4.0:
 qs@~6.5.1:
   version "6.5.1"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.1.tgz#349cdf6eef89ec45c12d7d5eb3fc0c870343a6d8"
-
-querystring-browser@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/querystring-browser/-/querystring-browser-1.0.4.tgz#f2e35881840a819bc7b1bf597faf0979e6622dc6"
 
 querystring@0.2.0:
   version "0.2.0"

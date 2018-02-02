@@ -10,6 +10,8 @@ Easy authentication for your next React Native app.
 
 ✅ Preconfigured, production tested authentication flow  
 
+✅ 2 Factor Authentication Enabled    
+
 ✅ React Navigation   
 
 ✅ Redux   

@@ -10,6 +10,7 @@ import {
 } from 'react-native'
 
 import { connect } from 'react-redux'
+import { Auth } from 'aws-amplify'
 
 import { colors, fonts } from '../theme'
 const { width, height } = Dimensions.get('window')
@@ -21,6 +22,15 @@ class Home extends React.Component {
   AnimatedScale = new Animated.Value(1)
   componentDidMount() {
     this.animate()
+    setTimeout(() => {
+      Auth.currentSession()
+        .then(data => {
+          console.log('data: ', data)
+        })
+        .catch(error => {
+          console.log('error: ', error)
+        })
+    }, 2000)
   }
   navigate() {
     this.props.navigation.navigate('Route1')

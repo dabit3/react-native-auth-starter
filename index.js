@@ -6,19 +6,12 @@ import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import rootReducer from './src/reducers'
 import thunk from 'redux-thunk'
+import config from './src/aws-exports'
 
 const store = createStore(rootReducer, applyMiddleware(thunk))
 
-import Amplify from 'aws-amplify-react-native'
-
-Amplify.configure({
-  Auth: {
-      identityPoolId: 'us-east-1:249b833a-8a98-4bdf-878d-802b6d72f34b', //REQUIRED - Amazon Cognito Identity Pool ID
-      region: 'us-east-1', // REQUIRED - Amazon Cognito Region
-      userPoolId: 'us-east-1_iWmAqwo3B', //OPTIONAL - Amazon Cognito User Pool ID
-      userPoolWebClientId: 'm27ocd7vddvhounlej6kli7nh',
-  }
-});
+import Amplify from 'aws-amplify'
+Amplify.configure(config);
 
 const ReduxApp = () => (
   <Provider store={store}>

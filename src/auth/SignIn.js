@@ -10,7 +10,7 @@ import {
   Image
 } from 'react-native';
 
-import { Auth } from 'aws-amplify-react-native'
+import { Auth } from 'aws-amplify'
 import { connect } from 'react-redux'
 
 import { authenticate } from '../actions'
