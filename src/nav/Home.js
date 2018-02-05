@@ -12,6 +12,7 @@ import {
 import { connect } from 'react-redux'
 import { Auth } from 'aws-amplify'
 
+import { logOut } from '../actions'
 import { colors, fonts } from '../theme'
 const { width, height } = Dimensions.get('window')
 
@@ -24,15 +25,30 @@ class Home extends React.Component {
   }
   AnimatedScale = new Animated.Value(1)
   componentDidMount() {
-    Auth.currentSession()
+    Auth.currentUserInfo()
+    .then(data => {
+      console.log('currentUserInfo: ', data)
+    })
+    .catch(err => {
+      console.log('error: ', err)
+    })
+    Auth.userAttributes(Auth.user)
       .then(data => {
-        const { accessToken: { payload: { username }}} = data
-        this.setState(() => ({ username }))
+        console.log('userAttributes: ', data)
       })
-      .catch(error => {
-        console.log('error: ', error)
+      .catch(err => {
+        console.log('error: ', err)
       })
     this.animate()
+  }
+  logout() {
+    Auth.signOut()
+      .then(() => {
+        this.props.dispatchLogout()
+      })
+      .catch(err => {
+        console.log('err: ', err)
+      })
   }
   navigate() {
     this.props.navigation.navigate('Route1')
@@ -60,12 +76,13 @@ class Home extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.homeContainer}>
-          <Text style={styles.welcome}>Welcome, { this.state.username }</Text>
+          <Text style={styles.welcome}>Welcome, { Auth.user.username }</Text>
           <Animated.Image
             source={require('../assets/boomboxcropped.png')}
             style={{ tintColor: colors.primary, width: width / 2, height: width / 2, transform: [{scale: this.AnimatedScale}]}}
             resizeMode='contain'
           />
+          <Text onPress={this.logout.bind(this)} style={styles.welcome}>Logout</Text>
         </View>
       </View>
     )
@@ -103,4 +120,8 @@ const mapStateToProps = state => ({
   auth: state.auth
 })
 
-export default connect(mapStateToProps)(Home)
+const mapDispatchToProps = {
+  dispatchLogout: () => logOut()
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "aws-amplify": "^0.2.0",
+    "moment": "^2.20.1",
     "react": "16.2.0",
     "react-native": "0.52.1",
     "react-navigation": "^1.0.0-beta.27",
@@ -26,6 +27,8 @@
     "preset": "react-native"
   },
   "rnpm": {
-    "assets": ["./src/assets/fonts"]
+    "assets": [
+      "./src/assets/fonts"
+    ]
   }
 }
