@@ -19,18 +19,20 @@ class Home extends React.Component {
   static navigationOptions = {
     header: null
   }
+  state = {
+    username: ''
+  }
   AnimatedScale = new Animated.Value(1)
   componentDidMount() {
+    Auth.currentSession()
+      .then(data => {
+        const { accessToken: { payload: { username }}} = data
+        this.setState(() => ({ username }))
+      })
+      .catch(error => {
+        console.log('error: ', error)
+      })
     this.animate()
-    setTimeout(() => {
-      Auth.currentSession()
-        .then(data => {
-          console.log('data: ', data)
-        })
-        .catch(error => {
-          console.log('error: ', error)
-        })
-    }, 2000)
   }
   navigate() {
     this.props.navigation.navigate('Route1')
@@ -58,7 +60,7 @@ class Home extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.homeContainer}>
-          <Text style={styles.welcome}>Welcome</Text>
+          <Text style={styles.welcome}>Welcome, { this.state.username }</Text>
           <Animated.Image
             source={require('../assets/boomboxcropped.png')}
             style={{ tintColor: colors.primary, width: width / 2, height: width / 2, transform: [{scale: this.AnimatedScale}]}}
