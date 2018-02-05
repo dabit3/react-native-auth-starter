@@ -52,7 +52,7 @@ cd react-native-auth-starter
 yarn || npm install
 ```
 
-4. Configure AWS Amplify settings or hook up your own auth provider (src/aws-exports.js).   
+4. Configure AWS Amplify settings or hook up your own auth provider `(src/aws-exports.js).`    
 
 ```
 export default {
