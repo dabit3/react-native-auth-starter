@@ -52,18 +52,14 @@ cd react-native-auth-starter
 yarn || npm install
 ```
 
-4. Configure AWS Amplify settings or hook up your own auth provider (index.js).   
+4. Configure AWS Amplify settings or hook up your own auth provider (src/aws-exports.js).   
 
 ```
-import Amplify from 'aws-amplify-react-native'
-
-Amplify.configure({
-  Auth: {
+export default {
       identityPoolId: <IDENTITY_POOL_ID>, //REQUIRED - Amazon Cognito Identity Pool ID
       region: '<REGION>', // REQUIRED - Amazon Cognito Region
       userPoolId: '<USER_POOL_ID>', //OPTIONAL - Amazon Cognito User Pool ID
       userPoolWebClientId: '<USER_POOL_WEB_CLIENT>',
-  }
-});
+}
 ```
 
