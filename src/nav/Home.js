@@ -25,20 +25,6 @@ class Home extends React.Component {
   }
   AnimatedScale = new Animated.Value(1)
   componentDidMount() {
-    Auth.currentUserInfo()
-    .then(data => {
-      console.log('currentUserInfo: ', data)
-    })
-    .catch(err => {
-      console.log('error: ', err)
-    })
-    Auth.userAttributes(Auth.user)
-      .then(data => {
-        console.log('userAttributes: ', data)
-      })
-      .catch(err => {
-        console.log('error: ', err)
-      })
     this.animate()
   }
   logout() {
@@ -76,7 +62,7 @@ class Home extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.homeContainer}>
-          <Text style={styles.welcome}>Welcome, { Auth.user.username }</Text>
+          <Text style={styles.welcome}>Welcome</Text>
           <Animated.Image
             source={require('../assets/boomboxcropped.png')}
             style={{ tintColor: colors.primary, width: width / 2, height: width / 2, transform: [{scale: this.AnimatedScale}]}}
