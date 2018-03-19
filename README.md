@@ -25,13 +25,6 @@ Easy authentication for your next React Native app.
 ✅ Cross-Platform   
 
 
-## Roadmap    
-
-⬜️ Social Logins / Federated Identities
-
-⬜️ Optional intro / onboarding flow    
-
-
 ## Getting Started   
 
 1. Clone project   
