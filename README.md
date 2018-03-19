@@ -73,4 +73,5 @@ awsmobile init
 
 ```
 awsmobile user-signin enable
+awsmobile push
 ```
