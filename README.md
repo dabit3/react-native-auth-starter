@@ -56,7 +56,7 @@ yarn || npm install
 
 ----
 
-5. Install AWSMobile CLI if not already installed and configured (for steps on how to configure AWSMobile CLI, see [this](https://www.youtube.com/watch?v=MpugaNKtw3k) two minute video)    
+5. Install [AWSMobile CLI](https://github.com/aws/awsmobile-cli) if not already installed and configured (for steps on how to configure AWSMobile CLI, see [this](https://www.youtube.com/watch?v=MpugaNKtw3k) two minute video)    
 
 ```
 npm i -g awsmobile-cli
