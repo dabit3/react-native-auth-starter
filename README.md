@@ -52,7 +52,7 @@ cd react-native-auth-starter
 yarn || npm install
 ```
 
-4. Configure AWS Amplify config in index.js by adding your own `aws-export.js` file in the `src` directory. If you do not already have this file, continue to step 5    
+4. Configure AWS Amplify config in `index.js` by adding your own `aws-export.js` file in the `src` directory. If you do not already have this file, continue to step 5    
 
 ----
 

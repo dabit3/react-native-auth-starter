@@ -2,6 +2,11 @@
 #
 .DS_Store
 
+# AWS
+awsmobilejs
+aws-exports.js
+src/aws-exports.js
+
 # Xcode
 #
 build/
