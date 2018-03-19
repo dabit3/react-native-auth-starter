@@ -52,14 +52,25 @@ cd react-native-auth-starter
 yarn || npm install
 ```
 
-4. Configure AWS Amplify settings or hook up your own auth provider `(src/aws-exports.js).`    
+4. Configure AWS Amplify config in index.js by adding your own `aws-export.js` file in the `src` directory. If you do not already have this file, continue to step 5    
+
+----
+
+5. Install AWSMobile CLI if not already installed and configured (for steps on how to configure AWSMobile CLI, see [this](https://www.youtube.com/watch?v=MpugaNKtw3k) two minute video)    
 
 ```
-export default {
-      identityPoolId: <IDENTITY_POOL_ID>, //REQUIRED - Amazon Cognito Identity Pool ID
-      region: '<REGION>', // REQUIRED - Amazon Cognito Region
-      userPoolId: '<USER_POOL_ID>', //OPTIONAL - Amazon Cognito User Pool ID
-      userPoolWebClientId: '<USER_POOL_WEB_CLIENT>',
-}
+npm i -g awsmobile-cli
+awsmobile configure
 ```
 
+6. Create a new AWS Mobile Hub Project using the AWSMobile CLI    
+
+```
+awsmobile init
+```
+
+7. Enable User Sign In    
+
+```
+awsmobile user-signin enable
+```
